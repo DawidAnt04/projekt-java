@@ -98,5 +98,14 @@ Podstawowe struktury aplikacji Java oraz podstawowe operacje w systemie kontroli
    git clone https://github.com/twoj-login/projekt-java.git
 
 
+## Dodatkowa sekcja
+
+
+
+ Dodatkowa informacja w pliku README.
+
+
+
+
 
 
