@@ -1,0 +1,24 @@
+# Pliki kompilacji
+
+*.class
+
+
+
+# Katalogi IDE
+
+.idea/
+
+.vscode/
+
+*.iml
+
+
+
+# Katalogi narzędzi
+
+target/
+
+out/
+
+bin/
+
