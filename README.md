@@ -101,6 +101,17 @@ Podstawowe struktury aplikacji Java oraz podstawowe operacje w systemie kontroli
 ## Dodatkowa sekcja
 
 
+<nav>
+
+  <a href="index.html">Strona główna</a>
+
+  <a href="contact.html">Kontakt</a>
+
+</nav>
+
+
+
+
 
  Dodatkowa informacja w pliku README.
 
