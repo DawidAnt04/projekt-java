@@ -8,4 +8,14 @@
 
 - Dodano plik CHANGELOG.md
 
+<nav>
+
+  <a href="index.html">Strona główna</a>
+
+  <a href="contact.html">Kontakt</a>
+
+</nav>
+
+
+
 
