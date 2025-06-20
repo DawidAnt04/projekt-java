@@ -82,6 +82,32 @@ Podstawowe struktury aplikacji Java oraz podstawowe operacje w systemie kontroli
 
 
 
+## Funkcje kalkulatora
+
+
+
+### Dodawanie
+
+
+
+Funkcja `add(a, b)` przyjmuje dwie liczby i zwraca ich sumę.
+
+
+
+#### Przykład użycia:
+
+
+
+```js
+
+const calculator = require('./newCalculator');
+
+
+
+console.log(calculator.add(2, 3)); // wynik: 5
+
+
+
 
 ---
 
