@@ -1,0 +1,23 @@
+{
+  "name": "projekt-java",
+  "version": "1.0.0",
+  "description": "Projekt Java.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DawidAnt04/projekt-java.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DawidAnt04/projekt-java/issues"
+  },
+  "homepage": "https://github.com/DawidAnt04/projekt-java#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
