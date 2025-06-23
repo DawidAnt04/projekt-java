@@ -101,10 +101,18 @@ Funkcja `add(a, b)` przyjmuje dwie liczby i zwraca ich sumę.
 # wdrażanie (CD Pipeline)
 
 
+ Uruchomienie testów :
+   - Po pushu  wykonywane są  testy (`npm test`) oraz sprawdzanie jakości kodu (`npm run lint`).
 
-- Po każdym pushu na branch `master` GitHub Actions uruchamia testy.
+Kopiowanie plików na serwer
+   - Po pomyślnym zakończeniu testów repozytorium jest kopiowane na serwer EC2.
 
-- Wdrożenie zawiera health check, który weryfikuje poprawność działania.
+   - Na serwerze:
+     - Tworzony jest backup aktualnej wersji aplikacji,
+     - Instalowane są zależności (`npm install`),
+     - Aplikacja jest restartowana przy pomocy `pm2`,
+     - Wykonywany jest health check
+
 
 
 
@@ -119,13 +127,22 @@ Funkcja `add(a, b)` przyjmuje dwie liczby i zwraca ich sumę.
 
 
 
-# Workflow
+# Workflow CI/CD
 
 
+CI:
 
-- Po zakończeniu pracy tworzy się Pull Request do `master`.
+- Uruchamiany na push i pull request na gałęzie master/feature
 
-- Po zaakceptowaniu pipeline CI/CD automatycznie testuje i wdraża aplikację.
+- kroki: Checkout kodu, Instalacja Node. zależności, testy (npm test), sprawdzenie kodu (npm run lint), budowa obrazu docker,
+
+CD:
+
+- Uruchamiany na push do gałęzi master
+
+Po testach następuje deployment na serwer
+
+Deployment zawiera poprzednią wersję, restart aplikacji i health check z rollbackiem,
 
 
 
