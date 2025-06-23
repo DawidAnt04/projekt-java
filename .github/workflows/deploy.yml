@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name:  CD 
 
 
 
@@ -28,9 +28,31 @@ jobs:
 
 
 
+      - name: Set up Node.js
+
+        uses: actions/setup-node@v3
+
+        with:
+
+          node-version: '18'
+
+
+
+      - name: Install dependencies
+
+        run: npm ci
+
+
+
       - name: Run tests
 
         run: npm test
+
+
+
+      - name: Lint code
+
+        run: npm run lint
 
 
 
@@ -52,7 +74,7 @@ jobs:
 
 
 
-      - name: SSH and restart app
+      - name: SSH and deploy with health check and rollback
 
         uses: appleboy/ssh-action@v1.0.0
 
@@ -66,11 +88,87 @@ jobs:
 
           script: |
 
+            set -e
+
+
+
+            cd ~
+
+            echo "Backing up current app..."
+
+            if [ -d app_backup_old ]; then
+
+              rm -rf app_backup_old
+
+            fi
+
+            if [ -d app_backup ]; then
+
+              mv app_backup app_backup_old
+
+            fi
+
+            if [ -d app ]; then
+
+              mv app app_backup
+
+            fi
+
+
+
+            echo "Deploying new app..."
+
+            mv ~/app ~/new_app
+
+            mv ~/new_app ~/app
+
+
+
             cd ~/app
 
             npm install
 
-            pm2 stop all || true
 
-            pm2 start index.js --name projekt-java || pm2 restart projekt-java
+
+            echo "Restarting app with pm2..."
+
+            pm2 stop projekt-java || true
+
+            pm2 start index.js --name projekt-java
+
+
+
+            echo "Running health check..."
+
+            for i in {1..10}; do
+
+              if curl -sf http://localhost:3000/health; then
+
+                echo "Health check passed!"
+
+                exit 0
+
+              else
+
+                echo "Health check failed, retrying ($i/10)..."
+
+                sleep 3
+
+              fi
+
+            done
+
+
+
+            echo "Health check failed after retries, rolling back..."
+
+            pm2 stop projekt-java || true
+
+            rm -rf ~/app
+
+            mv ~/app_backup ~/app
+
+            pm2 start index.js --name projekt-java
+
+            exit 1
 
