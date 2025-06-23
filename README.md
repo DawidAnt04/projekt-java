@@ -121,7 +121,7 @@ console.log(calculator.add(2, 3)); // wynik: 5
 
    ```bash
 
-   git clone https://github.com/twoj-login/projekt-java.git
+   git clone https://github.com/DawidAnt04/projekt-java.git
 
 
 ## Dodatkowa sekcja
