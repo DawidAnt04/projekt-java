@@ -94,6 +94,41 @@ Funkcja `add(a, b)` przyjmuje dwie liczby i zwraca ich sumę.
 
 
 
+# Deployment
+
+
+
+# wdrażanie (CD Pipeline)
+
+
+
+- Po każdym pushu na branch `master` GitHub Actions uruchamia testy.
+
+- Wdrożenie zawiera health check, który weryfikuje poprawność działania.
+
+
+
+
+# Konfiguracja środowiska
+
+
+
+- Na AWS EC2 powinien być zainstalowany Node.js oraz Docker.
+
+-  `/health` jest używany do monitoringu stanu aplikacji.
+
+
+
+# Workflow
+
+
+
+- Po zakończeniu pracy tworzy się Pull Request do `master`.
+
+- Po zaakceptowaniu pipeline CI/CD automatycznie testuje i wdraża aplikację.
+
+
+
 #### Przykład użycia:
 
 
